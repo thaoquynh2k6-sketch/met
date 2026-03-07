@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <head>
-    <style>
-        p{
-            color:red;
-        }
-    </style>
-
+  <style>
+    p {
+      color: aquamarine;
+    }
+  </style>
 </head>
 <body>
-    <p>
-        rat la met moi
-        nghỉ làm
-    </p>
+  <p>rat la met moi nghỉ làm</p>
 </body>
