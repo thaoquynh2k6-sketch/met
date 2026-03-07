@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <head>
+<<<<<<< HEAD
   <style>
     p {
       color: aquamarine;
     }
   </style>
+=======
+    <style>
+        p{
+            color:aquamarine;
+        }
+    </style>
+
+>>>>>>> 3a864061fe61336a0e13086015f87f0da61e1bca
 </head>
 <body>
   <p>rat la met moi nghỉ làm</p>
 </body>
+</html>
