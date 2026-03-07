@@ -2,7 +2,7 @@
 <head>
     <style>
         p{
-            color:red;
+            color:aquamarine;
         }
     </style>
 
@@ -13,3 +13,4 @@
         nghỉ làm
     </p>
 </body>
+</html>
