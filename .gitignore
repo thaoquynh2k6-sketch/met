@@ -1,0 +1,7 @@
+# Chặn toàn bộ ảnh trong thư mục dự án
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.svg
