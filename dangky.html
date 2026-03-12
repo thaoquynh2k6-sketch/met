@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đăng ký</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* FORM */
+.register-box{
+    width:360px;
+    background:#f7f5f3;
+    padding:25px;
+    border-radius:15px;
+
+    /* bỏ border và dùng stroke */
+    box-shadow:0 0 0 2px #c9b7a6;
+}
+
+/* header */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#6b3f26;
+}
+
+.header h3{
+    margin:0;
+}
+
+/* căn giữa dòng chữ */
+.title{
+    margin:15px 0 25px 0;
+    color:#6b3f26;
+    text-align:center;
+}
+
+/* input */
+.input-group{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    margin-bottom:18px;
+}
+
+.input-group i{
+    margin-right:10px;
+    color:#6b3f26;
+}
+
+.input-group input{
+    border:none;
+    outline:none;
+    background:none;
+    padding:10px 0;
+    width:100%;
+}
+
+/* button */
+.btn-register{
+    width:100%;
+    padding:12px;
+    background:#6b3f26;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-register:hover{
+    background:#5a341f;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="register-box">
+
+    <div class="header">
+        <span><i class="fa-solid fa-arrow-left"></i></span>
+        <h3>Đăng ký</h3>
+        <span>✕</span>
+    </div>
+
+    <p class="title">Tạo tài khoản 8 a.m của bạn</p>
+
+    <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" placeholder="Tên đăng nhập">
+    </div>
+
+    <div class="input-group">
+        <i class="fa-solid fa-id-card"></i>
+        <input type="text" placeholder="Họ và tên">
+    </div>
+
+    <div class="input-group">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" placeholder="Nhập số điện thoại">
+    </div>
+
+    <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" placeholder="Mail">
+    </div>
+
+    <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" placeholder="Mật khẩu">
+    </div>
+
+    <button class="btn-register">ĐĂNG KÝ</button>
+
+</div>
+
+</body>
+</html>
