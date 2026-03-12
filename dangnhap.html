@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* form */
+.form-box{
+    width:360px;
+    background:#f7f5f3;
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 0 0 2px #c9b7a6;
+}
+
+/* header */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#6b3f26;
+}
+
+.header h3{
+    margin:0;
+}
+
+/* title */
+.welcome{
+    margin-top:15px;
+    font-size:26px;
+    color:#6b3f26;
+}
+
+/* register line */
+.register{
+    margin-top:6px;
+    margin-bottom:25px;
+    font-size:14px;
+    color:#b68c73;
+}
+
+.register a{
+    color:#6b3f26;
+    text-decoration:underline;
+}
+
+/* input */
+.input-group{
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    margin-bottom:22px;
+}
+
+.input-group i{
+    margin-right:10px;
+    color:#6b3f26;
+}
+
+.input-group input{
+    border:none;
+    outline:none;
+    background:none;
+    padding:10px 0;
+    width:100%;
+}
+
+/* forgot password */
+.forgot{
+    text-align:right;
+    margin-top:-10px;
+    margin-bottom:18px;
+}
+
+.forgot a{
+    font-size:13px;
+    color:#b68c73;
+    text-decoration:none;
+}
+
+/* checkbox */
+.remember{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+/* button */
+.btn{
+    width:100%;
+    padding:14px;
+    background:#6b3f26;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+    <div class="header">
+        <h3>Đăng nhập</h3>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+
+    <div class="welcome">8 a.m chào bạn trở lại.</div>
+
+    <!-- dòng tạo tài khoản -->
+    <div class="register">
+        Bạn chưa có tài khoản?
+        <a href="#">Tạo tài khoản</a>
+    </div>
+
+    <!-- số điện thoại -->
+    <div class="input-group">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" placeholder="Nhập số điện thoại">
+    </div>
+
+    <!-- mật khẩu -->
+    <div class="input-group">
+    <i class="fa-solid fa-lock"></i>
+    <input type="password" placeholder="Nhập mật khẩu">
+</div>
+    <!-- quên mật khẩu -->
+    <div class="forgot">
+        <a href="#">Quên mật khẩu?</a>
+    </div>
+
+    <!-- ghi nhớ -->
+    <label class="remember">
+        <input type="checkbox">
+        Ghi nhớ mật khẩu cho lần sau
+    </label>
+
+    <!-- button -->
+    <button class="btn">ĐĂNG NHẬP</button>
+
+</div>
+
+</body>
+</html>
