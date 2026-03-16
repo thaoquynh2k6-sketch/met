@@ -230,8 +230,7 @@ function showSlides() {
     <div class="logo-container">
         <img src="c:\Users\Admin\Downloads\logo tách trắng.png" alt="logo" class="logo">
     </div>
-
-    <table class="footer-table">
+    <table class="khung">
         <tr>
             <td>
                 <div class="box">
@@ -256,14 +255,14 @@ function showSlides() {
             </td>
 
             <td>
-                <div class="box social-box">
+                <div class="box">
                     <h3>Mạng xã hội</h3>
-                    <div class="social-icons">
+                    <div class="mxh">
                         <img src="ảnh/png-clipartcvxgh8440347-thumbnail-removebg-preview.png" style="width: 50px;height: 50px;">
                         <img src="ảnh/b835dae2-3e7f-40e9-af3a-60faa4bf5fad-removebg-preview.png" style="width: 52px;height: 50px;">
                         <img src="ảnh/png-clipartgfs8940710-thumbnail-removebg-preview (1).png" style="width: 50px; height: 47px;">
                     </div>
-                    <button class="tag-btn">Tag us in your photos!</button>
+                    <button class="tag">Tag us in your photos!</button>
                 </div>
             </td>
         </tr>
@@ -288,7 +287,7 @@ function showSlides() {
     background: rgba(105, 78, 64, 0.65); 
     z-index: 1;
 }
-.logo-container, .footer-table {
+.logo-container, .khung {
     position: relative;
     z-index: 2;
 }
@@ -301,7 +300,7 @@ function showSlides() {
     width: 120px;
     height: 120px;
 }
-.footer-table {
+.khung {
     margin: auto;
     border-spacing: 100px 0; 
 }
@@ -328,19 +327,18 @@ function showSlides() {
     line-height: 1.4;
     font-family: "montserrat";
 }
-/* Social Icons Layout */
-.social-icons {
+.mxh {
     display: flex;
     gap: 20px;
     justify-content: center;
     margin-bottom: 35px;
     margin-top: 10px;
 }
-.social-icons img {
+.mxh img {
     cursor: pointer;
     align-items: center;
 }
-.tag-btn {
+.tag {
     background: transparent;
     border: 1px solid white;
     color: white;
@@ -352,7 +350,7 @@ function showSlides() {
     font-family: "montserrat";
     font-size: 20px;
 }
-.tag-btn:hover {
+.tag:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 </style>
