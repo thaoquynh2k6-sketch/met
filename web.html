@@ -34,6 +34,150 @@ ul.header li img {
     height: 100px;
     padding: 0px 80px 0px;
 }
+ div.slideshow-container {
+  margin-right: 80px;
+  margin-left: 80px;
+}
+div.gioi-thieu table{
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 50px;
+    font-size: 23px;
+}
+div.tieu-de{
+    font-family: "paytone one";
+    color: #623e2a;
+    font-size: 35px;
+}
+div.gioi-thieu{
+    font-family: "montserrat";
+    color: #623e2a;
+}
+div.gioi-thieu a{
+    color: white;
+    font-family: 'paytone one';
+    font-size: 20px;
+}
+div.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 50px; 
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+div.banh{
+    position: relative; 
+    border-radius: 30px; 
+    overflow: hidden;    
+}
+div.banh img {
+    width: 100%;
+    height: 100%;  
+}
+div.infor {
+    background-color: white;
+    position: absolute;
+    bottom: 20px;   
+    left: 20px;     
+    right: 20px;    
+    padding: 15px 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+div.infor h3 {
+    margin: 0;
+    font-family: "paytone one";
+    font-size: 20px; 
+    margin-bottom: 4px;
+}
+div.infor p {
+    margin: 0;
+    font-family: "montserrat";
+    font-size: 17px;
+    color:#623e2a;
+}
+div.mui-ten {
+    font-size: 24px;
+    color: #623e2a;
+    font-weight: 300;
+}
+div.cuoi {
+    background-image:url("ảnh/cua-hang-ban-nguyen-lieu-lam-banh-ha-noi4.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 10px 0;
+    position: relative;
+    color: white;
+    min-height: 430px;
+}
+.cuoi::before {
+    content: " ";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(105, 78, 64, 0.65); 
+}
+.logo-container, .khung {
+    position: relative;   
+}
+div.logo-container {
+    text-align: center;
+}
+img.logo {
+    width: 120px;
+    height: 120px;
+}
+table.khung {
+    margin: auto;
+    border-spacing: 100px 0; 
+}
+div.box {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    width: 300px;
+    height: 270px;
+    box-sizing: border-box;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+div.box h3 {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 20px;
+    font-family: "montserrat";
+}
+div.box p {
+    font-size: 18px;
+    margin: 5px 0;
+    line-height: 1.4;
+    font-family: "montserrat";
+}
+div.mxh {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 35px;
+    margin-top: 10px;
+}
+div.mxh img {
+    align-items: center;
+}
+div.tag {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px; 
+    font-family: "montserrat";
+    font-size: 18px;
+    text-align: center;
+}
     </style>
 </head>
 <body>
@@ -44,7 +188,7 @@ ul.header li img {
     <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Đăng nhập</a></li>
     <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Giỏ hàng</a></li>
 </ul>
-
+</body>
 <body>
 <div class="slideshow-container" >
 <div class="mySlides fade">
@@ -56,12 +200,6 @@ ul.header li img {
 <div class="mySlides fade">
   <img src="ảnh/thumb-31.jpg" style="width:100%;height: 800px;">
 </div>
-<style>
- div.slideshow-container {
-  margin-right: 80px;
-  margin-left: 80px;
-}
-</style>
 </div>
 <script>
 let slideIndex = 0;
@@ -102,28 +240,6 @@ function showSlides() {
 <td><iframe src="https://youtube.com/shorts/VKml2BplKYI?si=Ppm4y9EXXIIGQkVy" style="width: 450px;height: 400px;"></iframe></td>
 </table>
 </div>
-<style>
-div.gioi-thieu table{
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-top: 50px;
-    font-size: 25px;
-}
-div.tieu-de{
-    font-family: "paytone one";
-    color: #623e2a;
-    font-size: 40px;
-}
-div.gioi-thieu{
-    font-family: "montserrat";
-    color: #623e2a;
-}
-div.gioi-thieu a{
-    color: white;
-    font-family: 'paytone one';
-    font-size: 20px;
-}
-</style>
 <div class="product-grid">
     <div class="banh">
         <img src="ảnh/e31890e8-bc9f-43fc-a404-d4c2d59fb37c.jpg" alt="Bánh pháp">
@@ -156,7 +272,7 @@ div.gioi-thieu a{
         </div>
     </div>
     <div class="banh">
-        <img src="ảnh/da002d35-cac3-4080-81ae-8a5299243cbb.jpg" alt="Daily cake">
+        <img src="ảnh/dda73ec2-dd0c-45df-8140-16debe499f94.jpg" alt="Daily cake">
         <div class="infor">
             <div class="text">
                 <h3><a href="https://nabeebakery.com/danh-muc-san-pham/daily-cakes/" style="color: #623e2a;">Daily cake</a></h3>
@@ -185,58 +301,7 @@ div.gioi-thieu a{
             <div class="mui-ten">→</div>
         </div>
     </div>
-    </div>
-<style>
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
-    gap: 50px; 
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 80px;
-    margin-right: 80px;
-}
-.banh{
-    position: relative; 
-    border-radius: 30px; 
-    overflow: hidden;    
-}
-.banh img {
-    width: 100%;
-    height: 100%;  
-}
-.infor {
-    background-color: white;
-    position: absolute;
-    bottom: 20px;   
-    left: 20px;     
-    right: 20px;    
-    padding: 15px 20px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-.infor h3 {
-    margin: 0;
-    font-family: "paytone one";
-    font-size: 20px;
-    text-decoration: underline; 
-    margin-bottom: 4px;
-}
-.infor p {
-    margin: 0;
-    font-family: "montserrat";
-    font-size: 17px;
-    color:#623e2a;
-}
-.mui-ten {
-    font-size: 24px;
-    color: #623e2a;
-    font-weight: 300;
-}
-</style>
+</div>
 <div class="cuoi">
     <div class="logo-container">
         <img src="c:\Users\Admin\Downloads\logo tách trắng.png" alt="logo" class="logo">
@@ -267,97 +332,14 @@ div.gioi-thieu a{
                 <div class="box">
                     <h3>Mạng xã hội</h3>
                     <div class="mxh">
-                        <img src="ảnh/png-clipartcvxgh8440347-thumbnail-removebg-preview.png" style="width: 50px;height: 50px;">
-                        <img src="ảnh/b835dae2-3e7f-40e9-af3a-60faa4bf5fad-removebg-preview.png" style="width: 52px;height: 50px;">
-                        <img src="ảnh/png-clipartgfs8940710-thumbnail-removebg-preview (1).png" style="width: 50px; height: 47px;">
+                        <a href="https://www.facebook.com/savor.vn?locale=vi_VN"><img src="ảnh/png-clipartcvxgh8440347-thumbnail-removebg-preview.png" style="width: 50px;height: 50px;"></a>
+                        <a href="https://www.instagram.com/"><img src="ảnh/b835dae2-3e7f-40e9-af3a-60faa4bf5fad-removebg-preview.png" style="width: 52px;height: 50px;" ></a>
+                        <a href="https://www.tiktok.com/@breadnsalt?lang=en"><img src="ảnh/png-clipartgfs8940710-thumbnail-removebg-preview (1).png" style="width: 50px; height: 47px;"></a>
                     </div>
-                    <button class="tag"><i>Tag us in your photos!</i></button>
+                    <div class="tag"><i>Tag us in your photos!</i></div>
                 </div>
             </td>
         </tr>
     </table>
 </div>
-<style>
-.cuoi {
-    background-image:url("ảnh/cua-hang-ban-nguyen-lieu-lam-banh-ha-noi4.jpg");
-    background-size: cover;
-    background-position: center;
-    padding: 10px 0;
-    position: relative;
-    color: white;
-    min-height: 430px;
-}
-.cuoi::before {
-    content: " ";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(105, 78, 64, 0.65); 
-    z-index: 1;
-}
-.logo-container, .khung {
-    position: relative;
-    z-index: 2;
-}
-.logo-container {
-    text-align: center;
-    margin-bottom: 0px;
-    margin-top: 0px;
-}
-.logo {
-    width: 120px;
-    height: 120px;
-}
-.khung {
-    margin: auto;
-    border-spacing: 100px 0; 
-}
-.box {
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    padding: 25px;
-    width: 300px;
-    height: 270px;
-    box-sizing: border-box;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-}
-.box h3 {
-    margin-top: 0;
-    font-weight: 400;
-    font-size: 25px;
-    margin-bottom: 20px;
-    font-family: "montserrat";
-}
-.box p {
-    font-size: 18px;
-    margin: 5px 0;
-    line-height: 1.4;
-    font-family: "montserrat";
-}
-.mxh {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 35px;
-    margin-top: 10px;
-}
-.mxh img {
-    cursor: pointer;
-    align-items: center;
-}
-.tag {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px; 
-    cursor: pointer;
-    width: 100%;
-    transition: 0.3s;
-    font-family: "montserrat";
-    font-size: 18px;
-}
-.tag:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-</style>
+</body>
