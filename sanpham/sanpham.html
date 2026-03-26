@@ -24,12 +24,15 @@ ul.header li {
   white-space: nowrap;
   font-size: 100%;
 }
+ul.header li:hover {
+    text-decoration: underline;
+}
 ul.header li a {
   color: #623e2a;
   padding: 10px 80px 0px;
   text-decoration: none;
   font-family: "Paytone One", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
 }
 ul.header li img {
@@ -59,6 +62,11 @@ div.sp {
   flex-wrap: wrap;
   justify-content: center;
 }
+div.sp div.anh:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
 div.sp div.anh {
   width: 28%;
   height: auto;
@@ -84,6 +92,10 @@ div.sp div.anh div.ten {
 div.sp div.anh div.ten a {
    font-family: "paytone one", sans-serif;
    color: #623e2a;
+      text-decoration: none;
+}
+div.sp div.anh div.ten a:hover {
+    text-decoration: underline;
 }
 div.td {
     display: flex;
