@@ -209,6 +209,75 @@ h2 {
     color: white;
 }
 </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tìm và lưu trữ phần tử HTML có id là 'quantity'
+            const quantityEl = document.getElementById('quantity');
+            // Tìm và lưu trữ phần tử HTML có id là 'price'
+            const priceEl = document.getElementById('price');
+            // Tìm và lưu trữ phần tử HTML có id là 'decrease'
+            const decreaseBtn = document.getElementById('decrease');
+            // Tìm và lưu trữ phần tử HTML có id là 'increase'
+            const increaseBtn = document.getElementById('increase');
+            // Lấy danh sách các nút chọn size
+            const sizeOptions = document.querySelectorAll('.option');
+            // Lấy ảnh lớn và ảnh nhỏ
+            const mainImage = document.getElementById('mainImage');
+            const thumbImages = document.querySelectorAll('.anhnho img');
+
+            // Khai báo biến unitPrice đại diện cho đơn giá (dùng let để có thể thay đổi)
+            let unitPrice = 350000;
+            // Khai báo biến quantity (số lượng)
+            let quantity = 1;
+
+            // Hàm định dạng giá tiền
+            function formatPrice(value) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+            }
+
+            // Hàm cập nhật trạng thái hiển thị
+            function updateDisplay() {
+                quantityEl.textContent = quantity;
+                priceEl.textContent = formatPrice(unitPrice * quantity);
+            }
+
+            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
+            thumbImages.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    mainImage.src = this.src;
+                    thumbImages.forEach(img => img.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Tăng số lượng
+            increaseBtn.addEventListener('click', () => {
+                quantity += 1;
+                updateDisplay();
+            });
+
+            // Giảm số lượng
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity -= 1;
+                    updateDisplay();
+                }
+            });
+
+            // Sự kiện chọn size
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Cập nhật class active
+                    sizeOptions.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Lấy giá trị data-price và cập nhật hiển thị
+                    unitPrice = parseInt(this.getAttribute('data-price'));
+                    updateDisplay();
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <ul class="header">

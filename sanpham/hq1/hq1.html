@@ -50,13 +50,16 @@ ul.header li img {
 }
 .anhlon img{
     width: 40vw;
-    height: 50vw;
+    height: auto;    
+    border: 1px solid #623e2a;
+    border-radius: 5%;
 }
 .anhlon {
     padding: 0 7vw 0;
+
 }
 .tenbanh {
-    font-family: 'Italianno';
+    font-family: 'Italianno', cursive;
     font-size: 60px;
     color: #623e2a;
     text-align: left;
@@ -126,7 +129,7 @@ table, tr, td{
 }
 .anhnho img {
     width: 10vw;
-    height: 12vw;
+    height: auto;
     display: block;
     margin: 0 auto;
     border: 1px solid #623e2a;
@@ -209,75 +212,9 @@ h2 {
     color: white;
 }
 </style>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tìm và lưu trữ phần tử HTML có id là 'quantity'
-            const quantityEl = document.getElementById('quantity');
-            // Tìm và lưu trữ phần tử HTML có id là 'price'
-            const priceEl = document.getElementById('price');
-            // Tìm và lưu trữ phần tử HTML có id là 'decrease'
-            const decreaseBtn = document.getElementById('decrease');
-            // Tìm và lưu trữ phần tử HTML có id là 'increase'
-            const increaseBtn = document.getElementById('increase');
-            // Lấy danh sách các nút chọn size
-            const sizeOptions = document.querySelectorAll('.option');
-            // Lấy ảnh lớn và ảnh nhỏ
-            const mainImage = document.getElementById('mainImage');
-            const thumbImages = document.querySelectorAll('.anhnho img');
-
-            // Khai báo biến unitPrice đại diện cho đơn giá (dùng let để có thể thay đổi)
-            let unitPrice = 350000;
-            // Khai báo biến quantity (số lượng)
-            let quantity = 1;
-
-            // Hàm định dạng giá tiền
-            function formatPrice(value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
-            }
-
-            // Hàm cập nhật trạng thái hiển thị
-            function updateDisplay() {
-                quantityEl.textContent = quantity;
-                priceEl.textContent = formatPrice(unitPrice * quantity);
-            }
-
-            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
-            thumbImages.forEach(thumb => {
-                thumb.addEventListener('click', function() {
-                    mainImage.src = this.src;
-                    thumbImages.forEach(img => img.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Tăng số lượng
-            increaseBtn.addEventListener('click', () => {
-                quantity += 1;
-                updateDisplay();
-            });
-
-            // Giảm số lượng
-            decreaseBtn.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity -= 1;
-                    updateDisplay();
-                }
-            });
-
-            // Sự kiện chọn size
-            sizeOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Cập nhật class active
-                    sizeOptions.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Lấy giá trị data-price và cập nhật hiển thị
-                    unitPrice = parseInt(this.getAttribute('data-price'));
-                    updateDisplay();
-                });
-            });
-        });
-    </script>
+<script defer>
+    
+</script>
 </head>
 <body>
     <ul class="header">
@@ -290,33 +227,33 @@ h2 {
     <table>
         <tr>
             <td class="anhlon">
-                <img src="a2491797f560877796ccb943e7956925.jpg" alt="Grape Pearl">
+                <img src="509fe87aad1dfef59afbec6447682e42.jpg" alt="Strawberry Blush">
             </td>
             <td class="chu">
             <div class="cot2">
                 <div class="banhhq">Bánh hoa quả</div>
-                <div class="tenbanh">Peach Velvet</div>
+                <div class="tenbanh">Strawberry Blush</div>
                 <div class="dong3">
                     <div class="gia">200.000đ </div>
                     <div class="soluong"></div>
-                    <div class="giam"><img src="dau tru.png" alt="Giảm"></div>
+                    <button class="giam"><img src="dau tru.png" alt="Giảm"></button>
                     <div class="so">1</div>
-                    <div class="tang"><img src="dấu cộng.png" alt="Tăng"></div>
+                    <button class="tang"><img src="dấu cộng.png" alt="Tăng"></button>
                 </div>
-                <div class="nglieu">Đào</div>
+                <div class="nglieu">Dâu tây</div>
                 <div class="des">
-                    <p>         Lớp kem mịn màng ôm trọn cốt bánh mềm ẩm, điểm xuyết đào tươi hoặc mousse đào ngọt thanh. Hương vị nhẹ nhàng, tinh tế với độ ngọt vừa phải, phù hợp cho những ai yêu thích sự mềm mại và thanh thoát.     
-                    <br>     Đặt bánh ngay tại 8 a.m để thưởng thức hương vị của Peach Velvet!</p>
-                    </div>
+                    <p>Cốt bánh mềm ẩm kết hợp với lớp kem tươi mịn nhẹ và những quả dâu tây tươi mọng. Vị chua thanh tự nhiên của dâu hòa quyện cùng độ béo nhẹ của kem, tạo nên tổng thể hài hòa, tươi mát và dễ thưởng thức trong mọi dịp.
+                    <br> Đặt bánh ngay tại 8 a.m để thưởng thức hương vị của Strawberry Blush!</p>
+                </div>
             </div>
             </td>
         </tr>
         <tr class="row2">
             <td>
                 <div class="anhnho">
-                    <div><img src="a2491797f560877796ccb943e7956925.jpg" alt="Peach Velvet"></div>
-                    <div><img src="ee3a544a9035aeaf6bebabbf8717171c.jpg" alt="Peach Velvet"></div>
-                    <div><img src="OIP.webp" alt="Peach Velvet"></div>
+                    <div><img src="509fe87aad1dfef59afbec6447682e42.jpg" alt="Strawberry Blush"></div>
+                    <div><img src="d92be7bc6d9d9990713712b3879b6528.jpg" alt="Strawberry Blush"></div>
+                    <div><img src="e64b6b304f09e3f1985f4488c511bf56.jpg" alt="Strawberry Blush"></div>
                 </div>
             </td>
             <td>
@@ -328,9 +265,9 @@ h2 {
                     <button class="option">20cm</button>
                 </div>
                 </div>
-                <div class="tgh">
-                Thêm giỏ hàng <img src="Screenshot 2026-03-22 020902.png" alt="Giỏ hàng">
-                </div>
+                <button class="tgh">
+                    Thêm giỏ hàng <img src="Screenshot 2026-03-22 020902.png" alt="Giỏ hàng">
+                </button>
             </td>
         </tr>
         <tr class="row3">
