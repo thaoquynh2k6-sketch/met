@@ -190,9 +190,12 @@ h2 {
     margin: 0px 30px 15px;
     white-space: nowrap;
 }
-.option:hover {
+.option:hover, .option.active {
     background-color: #623e2a;
     color: white;
+}
+.giam, .tang, .tgh, .option {
+    cursor: pointer;
 }
 </style>
 </head>
@@ -202,7 +205,7 @@ h2 {
         <li><a href="https://www.1001fonts.com/catchy-mager-font.html">About us</a></li>
         <li><img src="logo tách.png"></li>
         <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Đăng nhập</a></li>
-        <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Giỏ hàng</a></li>
+        <li><a href="#" onclick="moGioHang()">Giỏ hàng (<span id="so-luong">0</span>)</a></li>
     </ul>
     <table>
         <tr>
@@ -214,11 +217,11 @@ h2 {
                 <span></span><div class="banhphap">Bánh hộp thiếc</div>
                 <div class="tenbanh">Soursop Cheesecake</div>
                 <div class="dong3">
-                    <div class="gia">325.000đ </div>
+                    <div class="gia" id="price">325.000đ</div>
                     <div class="soluong"></div>
-                    <div class="giam"><img src="dau tru.png" alt="Giảm"></div>
-                    <div class="so">1</div>
-                    <div class="tang"><img src="dấu cộng.png" alt="Tăng"></div>
+                    <div class="giam" id="decrease"><img src="dau tru.png" alt="Giảm"></div>
+                    <div class="so" id="quantity">1</div>
+                    <div class="tang" id="increase"><img src="dấu cộng.png" alt="Tăng"></div>
                 </div>
                 <div class="nglieu"></div>
                 <div class="des">
@@ -232,18 +235,18 @@ h2 {
             <td>
                 <div class="anhnho">
                     <div><img src="https://r2.cms.4handy.vn/mang-cau-na-pho-mai-550g-1024x1024.png" alt="Soursop Cheesecake"></div>
-                    <div><img src="https://r2.cms.4handy.vn/mang-cau-xiem-pho-mai-mini-250g-1024x1024.png" alt="Soursop Cheesecake Mini"></div>
+                    <div><img src="https://r2.cms.4handy.vn/mang-cau-xiem-pho-mai-mini-250g-1024x1024.png" alt="Soursop Cheesecake"></div>
                 </div>
             </td>
             <td>
                 <div class="kt">
                     <b>Trọng lượng</b>
                 <div class="size">
-                    <button class="option">320g</button>
-                    <button class="option">670g</button>
+                    <button class="option active" data-price="325000">320g</button>
+                    <button class="option" data-price="650000">670g</button>
                 </div>
                 </div>
-                <div class="tgh"><img src="them gio hang.png" alt=""></div>
+                <div class="tgh" onclick="themVaoGio()"><img src="them gio hang.png" alt=""></div>
             </td>
         </tr></table>
          <div>
@@ -264,6 +267,163 @@ h2 {
             </pre>
             <hr>
         </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityEl = document.getElementById('quantity');
+            const priceEl = document.getElementById('price');
+            const decreaseBtn = document.getElementById('decrease');
+            const increaseBtn = document.getElementById('increase');
+            const sizeOptions = document.querySelectorAll('.option');
+            
+            let unitPrice = 325000;
+            let quantity = 1;
 
+            function formatPrice(value) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+            }
+
+            function updateDisplay() {
+                quantityEl.textContent = quantity;
+                priceEl.textContent = formatPrice(unitPrice * quantity);
+            }
+
+            increaseBtn.addEventListener('click', () => {
+                quantity += 1;
+                updateDisplay();
+            });
+
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity -= 1;
+                    updateDisplay();
+                }
+            });
+
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Update active class
+                    sizeOptions.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update price based on selected size
+                    unitPrice = parseInt(this.getAttribute('data-price'));
+                    updateDisplay();
+                });
+            });
+        });
+    </script>
+<!-- Popup giỏ hàng -->
+<div id="gio-hang-popup" style="display:none; position:fixed; top:80px; right:20px; 
+     background:white; border:1px solid #623e2a; padding:20px; z-index:999; 
+     width:320px; border-radius:10px; font-family:'Montserrat',sans-serif; color:#623e2a;">
+  <h3 style="margin-top:0">Giỏ hàng</h3>
+  <div id="danh-sach-gio"></div>
+  <hr>
+  <p>Tổng: <strong id="tong-tien">0đ</strong></p>
+  <button onclick="dongGioHang()" style="background:white; border:1px solid #623e2a; 
+          color:#623e2a; padding:8px 16px; border-radius:20px; cursor:pointer;">Đóng</button>
+  <button onclick="datHang()" style="background:#623e2a; border:none; 
+          color:white; padding:8px 16px; border-radius:20px; cursor:pointer;">Đặt hàng</button>
+</div>
+<script>
+function layGioHang() {
+  return JSON.parse(localStorage.getItem('gioHang')) || [];
+}
+function luuGioHang(gio) {
+  localStorage.setItem('gioHang', JSON.stringify(gio));
+}
+
+// Thêm vào giỏ — lấy tên, giá, size từ trang hiện tại
+function themVaoGio() {
+  const ten = 'Soursop Cheesecake';
+  const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
+  const soLuong = parseInt(document.getElementById('quantity').textContent);
+  const size = document.querySelector('.option.active').textContent;
+
+  const gio = layGioHang();
+  const key = ten + '-' + size;
+  const existing = gio.find(i => i.key === key);
+
+  if (existing) {
+    existing.soLuong += soLuong;
+  } else {
+    gio.push({ key, ten, size, gia, soLuong });
+  }
+
+  luuGioHang(gio);
+  capNhatSoLuong();
+  alert('Đã thêm vào giỏ hàng!');
+}
+
+function capNhatSoLuong() {
+  const gio = layGioHang();
+  const tong = gio.reduce((s, i) => s + i.soLuong, 0);
+  document.getElementById('so-luong').textContent = tong;
+}
+
+function hienThiGioHang() {
+  const gio = layGioHang();
+  const ds = document.getElementById('danh-sach-gio');
+  const tt = document.getElementById('tong-tien');
+
+  if (gio.length === 0) {
+    ds.innerHTML = '<p>Giỏ hàng trống!</p>';
+    tt.textContent = '0đ';
+    return;
+  }
+
+  ds.innerHTML = gio.map(item => `
+    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
+      <span>${item.ten} (${item.size}) x${item.soLuong}</span>
+      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
+      <button onclick="xoaKhoiGio('${item.key}')" 
+        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
+    </div>
+  `).join('');
+
+  const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
+  tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
+}
+
+function xoaKhoiGio(key) {
+  let gio = layGioHang().filter(i => i.key !== key);
+  luuGioHang(gio);
+  hienThiGioHang();
+  capNhatSoLuong();
+}
+
+function moGioHang() {
+  document.getElementById('gio-hang-popup').style.display = 'block';
+  hienThiGioHang();
+}
+
+function dongGioHang() {
+  document.getElementById('gio-hang-popup').style.display = 'none';
+}
+
+function datHang() {
+  const gio = layGioHang();
+  if (gio.length === 0) { alert('Giỏ hàng trống!'); return; }
+  const hoTen = prompt('Họ và tên:');
+  const sdt = prompt('Số điện thoại:');
+  const diaChi = prompt('Địa chỉ giao hàng:');
+  if (!hoTen || !sdt || !diaChi) { alert('Vui lòng điền đầy đủ!'); return; }
+
+  fetch('http://localhost:3000/api/dat-hang', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hoTen, sdt, diaChi, gioHang: gio })
+  })
+  .then(r => r.json())
+  .then(data => {
+    alert(data.thongBao);
+    localStorage.removeItem('gioHang');
+    capNhatSoLuong();
+    dongGioHang();
+  });
+}
+
+capNhatSoLuong();
+</script>
 </body>
 </html>
