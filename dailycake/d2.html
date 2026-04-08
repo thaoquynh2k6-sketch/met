@@ -51,8 +51,6 @@ ul.header li img {
 .anhlon img{
     width: 30vw;
     height: auto;
-    border: 1px solid #623e2a;
-    border-radius: 5%;
 }
 .anhlon {
     padding: 0 7vw 0;
@@ -134,6 +132,7 @@ table {
     margin: 0 auto;
     border: 1px solid #623e2a;
     border-radius: 10%;
+    cursor: pointer;
 }
 .anhnho {
     display: flex;
@@ -166,6 +165,14 @@ h2 {
     margin: 0 auto;
     width: fit-content;
 }
+.row3 {
+    width: 100%;
+    vertical-align: top;
+    border-bottom: 1px solid #623e2a;
+}
+.giam, .tang, .tgh img {
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -174,23 +181,23 @@ h2 {
         <li><a href="https://www.1001fonts.com/catchy-mager-font.html">About us</a></li>
         <li><img src="logo tách.png"></li>
         <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Đăng nhập</a></li>
-        <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Giỏ hàng</a></li>
+        <li><a href="#" onclick="moGioHang()">Giỏ hàng (<span id="so-luong">0</span>)</a></li>
     </ul>
     <table>
         <tr>
             <td class="anhlon">
-                <img src="https://nabeebakery.com/wp-content/uploads/2024/10/1.png" alt="Tropical Mango">
+                <img id="main-image" src="https://nabeebakery.com/wp-content/uploads/2024/10/1.png" alt="Tropical Mango">
             </td>
             <td class="chu">
             <div class="cot2">
                 <span></span><div class="banhphap">Daily Cake</div>
                 <div class="tenbanh">Tropical Mango</div>
                 <div class="dong3">
-                    <div class="gia">50.000đ </div>
+                    <div class="gia" id="price">50.000đ </div>
                     <div class="soluong"></div>
-                    <button class="giam"><img src="dau tru.png" alt="Giảm"></button>
-                    <div class="so">1</div>
-                    <button class="tang"><img src="dấu cộng.png" alt="Tăng"></button>
+                    <div class="giam" id="decrease"><img src="dau tru.png" alt="Giảm"></div>
+                    <div class="so" id="quantity">1</div>
+                    <div class="tang" id="increase"><img src="dấu cộng.png" alt="Tăng"></div>
                 </div>
                 <div class="nglieu">Xoài</div>
                 <div class="des">
@@ -209,26 +216,133 @@ h2 {
                 </div>
             </td>
             <td>
-                <button class="tgh"><img src="them gio hang.png" alt=""></button>
+                <div class="tgh"><img src="them gio hang.png" alt="Thêm giỏ hàng" onclick="themVaoGio()"></div>
             </td>
-        </tr></table>
-         <div>
-            <hr><pre>
+        </tr>
+        <tr class="row3">
+            <td style="padding-bottom: 30px;">
+                <h2 style="padding-left: 15vw;">Hướng dẫn sử dụng</h2>
+                <ul class="huong" style="padding-left: 5vw;">
+                    <li>Luôn giữ bánh trong hộp kín & bảo quản trong ngăn mát tủ lạnh</li>
+                    <li>Không nên để bánh ở nhiệt độ phòng quá 30 phút (Bánh sẽ bị chảy)</li>
+                    <li>Sử dụng trong vòng 03 ngày</li>
+                </ul>
+            </td>
+            <td style="padding-left: 5vw;">
+                <h2 style="padding-left: 10vw;">Phụ kiện đính kèm</h2>
+                <ul class="huong" style="padding-left: 8vw;">
+                    <li>01 Chiếc nến sinh nhật</li>
+                    <li>01 Bộ đĩa và dĩa dành cho 10 người</li>
+                    <li>01 Dao cắt bánh</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
 
-            </pre>
-        </div>
-        <div><h2>Hướng dẫn sử dụng</h2>
-            <ul class="huong">
-                <li>Luôn giữ bánh trong hộp kín & bảo quản trong ngăn mát tủ lạnh</li>
-                <li>Không nên để bánh ở nhiệt độ phòng quá 30 phút (Bánh sẽ bị chảy)</li>
-                <li>Sử dụng trong vòng 03 ngày</li>
-            </ul></div>
-        <div>
-            <pre>
+    <script>
+        // Tăng giảm số lượng và cập nhật giá
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantityEl = document.getElementById('quantity');
+            const priceEl = document.getElementById('price');
+            const decreaseBtn = document.getElementById('decrease');
+            const increaseBtn = document.getElementById('increase');
 
-            </pre>
-            <hr>
-        </div>
+            let unitPrice = 50000;
+            let quantity = 1;
 
+            function formatPrice(value) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+            }
+
+            function updateDisplay() {
+                quantityEl.textContent = quantity;
+                priceEl.textContent = formatPrice(unitPrice * quantity);
+            }
+
+            increaseBtn.addEventListener('click', () => {
+                quantity += 1;
+                updateDisplay();
+            });
+
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity -= 1;
+                    updateDisplay();
+                }
+            });
+        });
+        // Popup giỏ hàng
+        function layGioHang() {
+            return JSON.parse(localStorage.getItem('gioHang')) || [];
+        }
+        function luuGioHang(gio) {
+            localStorage.setItem('gioHang', JSON.stringify(gio));
+        }
+
+        // Thêm vào giỏ — lấy tên, giá từ trang hiện tại
+        function themVaoGio() {
+            const ten = 'Tropical Mango';
+            const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
+            const soLuong = parseInt(document.getElementById('quantity').textContent);
+
+            const gio = layGioHang();
+            const key = ten;
+            const existing = gio.find(i => i.key === key);
+
+            if (existing) {
+                existing.soLuong += soLuong;
+            } else {
+                gio.push({ key, ten, gia, soLuong });
+            }
+
+            luuGioHang(gio);
+            capNhatSoLuong();
+            alert('Đã thêm vào giỏ hàng!');
+        }
+
+        function capNhatSoLuong() {
+            const gio = layGioHang();
+            const tong = gio.reduce((s, i) => s + i.soLuong, 0);
+            document.getElementById('so-luong').textContent = tong;
+        }
+
+        function hienThiGioHang() {
+            const gio = layGioHang();
+            const ds = document.getElementById('danh-sach-gio');
+            const tt = document.getElementById('tong-tien');
+
+            if (gio.length === 0) {
+                ds.innerHTML = '<p>Giỏ hàng trống!</p>';
+                tt.textContent = '0đ';
+                return;
+            }
+
+            ds.innerHTML = gio.map(item => `
+    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
+      <span>${item.ten} x${item.soLuong}</span>
+      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
+      <button onclick="xoaKhoiGio('${item.key}')" 
+        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
+    </div>
+  `).join('');
+
+            const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
+            tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
+        }
+        capNhatSoLuong();
+
+        // Hiển thị ảnh nhỏ khi click sẽ đổi ảnh lớn
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainImage = document.getElementById('main-image');
+            const thumbnailImages = document.querySelectorAll('.anhnho img');
+
+            thumbnailImages.forEach(img => {
+                img.addEventListener('click', function () {
+                    mainImage.src = this.src;
+                    mainImage.alt = this.alt;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
