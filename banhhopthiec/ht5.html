@@ -134,6 +134,11 @@ table {
     margin: 0 auto;
     border: 1px solid #623e2a;
     border-radius: 10%;
+    cursor: pointer;
+}
+.anhnho img.active {
+    border-color: #ff9900;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 }
 .anhnho {
     display: flex;
@@ -171,7 +176,16 @@ h2 {
     color: #623e2a;
     font-weight: 450;
     font-size: 23px;
-    display: flex
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.size {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 30px;
 }
 .option {
     font-family: "Montserrat", sans-serif;
@@ -186,11 +200,10 @@ h2 {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    display: inline-block;
-    margin: 0px 30px 15px;
     white-space: nowrap;
 }
-.option:hover {
+.option:hover,
+.option.active {
     background-color: #623e2a;
     color: white;
 }
@@ -205,9 +218,26 @@ h2 {
             const decreaseBtn = document.getElementById('decrease');
             const increaseBtn = document.getElementById('increase');
             const sizeOptions = document.querySelectorAll('.option');
+            // Lấy ảnh lớn và ảnh nhỏ
+            const mainImage = document.getElementById('main-image');
+            const thumbImages = document.querySelectorAll('.anhnho img');
             
+            // Khai báo biến unitPrice đại diện cho đơn giá (dùng let để có thể thay đổi)
             let unitPrice = 350000;
+            // Khai báo biến quantity (số lượng)
             let quantity = 1;
+
+            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
+            thumbImages.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    if (mainImage) {
+                        mainImage.src = this.src;
+                        mainImage.alt = this.alt;
+                    }
+                    thumbImages.forEach(img => img.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
 
             function formatPrice(value) {
                 return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
@@ -255,7 +285,7 @@ h2 {
     <table>
         <tr>
             <td class="anhlon">
-                <img src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake">
+                <img id="main-image" src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake">
             </td>
             <td class="chu">
             <div class="cot2">
@@ -280,7 +310,7 @@ h2 {
                 <div class="anhnho">
                     <div><img src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake 400g"></div>
                     <div><img src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-2-1024x1024.jpg" alt="Double Cheese Lemon Cake 400g"></div>
-                    <div><img src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake 400g"></div>
+                
                 </div>
             </td>
             <td>
