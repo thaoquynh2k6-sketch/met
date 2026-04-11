@@ -1,9 +1,9 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "root"; // MAMP trên Mac mặc định mật khẩu là "root"
-$db   = "8am_db";
-$port = 8889;    // Cổng MySQL mặc định của MAMP là 8889
+$host = "b5vgtarq20bz49perd1a-mysql.services.clever-cloud.com";
+$user = "ujrwwrzik0pzmz9s";
+$pass = "cs1mvrPzccsSVLFMQrQi"; 
+$db   = "b5vgtarq20bz49perd1a";
+$port = 3306;    
 
 // Kết nối database
 $conn = new mysqli($host, $user, $pass, $db, $port);
