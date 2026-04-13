@@ -254,78 +254,16 @@
         .option {
             cursor: pointer;
         }
+        a:link {
+    color: #623e2a;
+}
+
+a:visited {
+    color: #623e2a;
+}
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Tìm và lưu trữ phần tử HTML có id là 'quantity'
-            const quantityEl = document.getElementById('quantity');
-            // Tìm và lưu trữ phần tử HTML có id là 'price'
-            const priceEl = document.getElementById('price');
-            // Tìm và lưu trữ phần tử HTML có id là 'decrease'
-            const decreaseBtn = document.getElementById('decrease');
-            // Tìm và lưu trữ phần tử HTML có id là 'increase'
-            const increaseBtn = document.getElementById('increase');
-            // Lấy danh sách các nút chọn size
-            const sizeOptions = document.querySelectorAll('.option');
-            // Lấy ảnh lớn và ảnh nhỏ
-            const mainImage = document.getElementById('mainImage');
-            const thumbImages = document.querySelectorAll('.anhnho img');
 
-            // Khai báo biến unitPrice đại diện cho đơn giá (dùng let để có thể thay đổi)
-            let unitPrice = 350000;
-            // Khai báo biến quantity (số lượng)
-            let quantity = 1;
-
-            // Hàm định dạng giá tiền
-            function formatPrice(value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
-            }
-
-            // Hàm cập nhật trạng thái hiển thị
-            function updateDisplay() {
-                quantityEl.textContent = quantity;
-                priceEl.textContent = formatPrice(unitPrice * quantity);
-            }
-
-            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
-            thumbImages.forEach(thumb => {
-                thumb.addEventListener('click', function () {
-                    mainImage.src = this.src;
-                    thumbImages.forEach(img => img.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Tăng số lượng
-            increaseBtn.addEventListener('click', () => {
-                quantity += 1;
-                updateDisplay();
-            });
-
-            // Giảm số lượng
-            decreaseBtn.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity -= 1;
-                    updateDisplay();
-                }
-            });
-
-            // Sự kiện chọn size
-            sizeOptions.forEach(option => {
-                option.addEventListener('click', function () {
-                    // Cập nhật class active
-                    sizeOptions.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Lấy giá trị data-price và cập nhật hiển thị
-                    unitPrice = parseInt(this.getAttribute('data-price'));
-                    updateDisplay();
-                });
-            });
-        });
-    </script>
 </head>
-
 <body>
     <ul class="header">
         <li><a href="https://www.1001fonts.com/catchy-mager-font.html">Sản phẩm</a></li>
@@ -413,81 +351,6 @@
             </pre>
         <hr>
     </div>
-    <!-- Popup giỏ hàng -->
-    <div id="gio-hang-popup" style="display:none; position:fixed; top:80px; right:20px; 
-     background:white; border:1px solid #623e2a; padding:20px; z-index:999; 
-     width:320px; border-radius:10px; font-family:'Montserrat',sans-serif; color:#623e2a;">
-        <h3 style="margin-top:0">Giỏ hàng</h3>
-        <div id="danh-sach-gio"></div>
-        <hr>
-        <p>Tổng: <strong id="tong-tien">0đ</strong></p>
-        <button onclick="dongGioHang()" style="background:white; border:1px solid #623e2a; 
-          color:#623e2a; padding:8px 16px; border-radius:20px; cursor:pointer;">Đóng</button>
-        <button onclick="datHang()" style="background:#623e2a; border:none; 
-          color:white; padding:8px 16px; border-radius:20px; cursor:pointer;">Đặt hàng</button>
-    </div>
-    <script>
-        function layGioHang() {
-            return JSON.parse(localStorage.getItem('gioHang')) || [];
-        }
-        function luuGioHang(gio) {
-            localStorage.setItem('gioHang', JSON.stringify(gio));
-        }
-
-        // Thêm vào giỏ — lấy tên, giá, size từ trang hiện tại
-        function themVaoGio() {
-            const ten = 'Golden Melon';
-            const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
-            const soLuong = parseInt(document.getElementById('quantity').textContent);
-            const size = document.querySelector('.option.active').textContent;
-
-            const gio = layGioHang();
-            const key = ten + '-' + size;
-            const existing = gio.find(i => i.key === key);
-
-            if (existing) {
-                existing.soLuong += soLuong;
-            } else {
-                gio.push({ key, ten, size, gia, soLuong });
-            }
-
-            luuGioHang(gio);
-            capNhatSoLuong();
-            alert('Đã thêm vào giỏ hàng!');
-        }
-
-        function capNhatSoLuong() {
-            const gio = layGioHang();
-            const tong = gio.reduce((s, i) => s + i.soLuong, 0);
-            document.getElementById('so-luong').textContent = tong;
-        }
-
-        function hienThiGioHang() {
-            const gio = layGioHang();
-            const ds = document.getElementById('danh-sach-gio');
-            const tt = document.getElementById('tong-tien');
-
-            if (gio.length === 0) {
-                ds.innerHTML = '<p>Giỏ hàng trống!</p>';
-                tt.textContent = '0đ';
-                return;
-            }
-
-            ds.innerHTML = gio.map(item => `
-    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
-      <span>${item.ten} (${item.size}) x${item.soLuong}</span>
-      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
-      <button onclick="xoaKhoiGio('${item.key}')" 
-        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
-    </div>
-  `).join('');
-
-            const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
-            tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
-        }
-
-        capNhatSoLuong();
-    </script>
 </body>
-
+<script src="banhang.js"></script>
 </html>

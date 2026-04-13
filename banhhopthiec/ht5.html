@@ -210,69 +210,14 @@ h2 {
 .giam, .tang, .tgh, .option {
     cursor: pointer;
 }
+a:link {
+    color: #623e2a;
+}
+
+a:visited {
+    color: #623e2a;
+}
 </style>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const quantityEl = document.getElementById('quantity');
-            const priceEl = document.getElementById('price');
-            const decreaseBtn = document.getElementById('decrease');
-            const increaseBtn = document.getElementById('increase');
-            const sizeOptions = document.querySelectorAll('.option');
-            // Lấy ảnh lớn và ảnh nhỏ
-            const mainImage = document.getElementById('main-image');
-            const thumbImages = document.querySelectorAll('.anhnho img');
-            
-            // Khai báo biến unitPrice đại diện cho đơn giá (dùng let để có thể thay đổi)
-            let unitPrice = 350000;
-            // Khai báo biến quantity (số lượng)
-            let quantity = 1;
-
-            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
-            thumbImages.forEach(thumb => {
-                thumb.addEventListener('click', function () {
-                    if (mainImage) {
-                        mainImage.src = this.src;
-                        mainImage.alt = this.alt;
-                    }
-                    thumbImages.forEach(img => img.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            function formatPrice(value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
-            }
-
-            function updateDisplay() {
-                quantityEl.textContent = quantity;
-                priceEl.textContent = formatPrice(unitPrice * quantity);
-            }
-
-            increaseBtn.addEventListener('click', () => {
-                quantity += 1;
-                updateDisplay();
-            });
-
-            decreaseBtn.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity -= 1;
-                    updateDisplay();
-                }
-            });
-
-            sizeOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Update active class
-                    sizeOptions.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Update price based on selected size
-                    unitPrice = parseInt(this.getAttribute('data-price'));
-                    updateDisplay();
-                });
-            });
-        });
-</script>
 </head>
 <body>
     <ul class="header">
@@ -285,7 +230,7 @@ h2 {
     <table>
         <tr>
             <td class="anhlon">
-                <img id="main-image" src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake">
+                <img id="mainImage" src="https://r2.cms.4handy.vn/double-cheese-lemon-cake-400g-1-1024x1024.jpg" alt="Double Cheese Lemon Cake">
             </td>
             <td class="chu">
             <div class="cot2">
@@ -342,118 +287,6 @@ h2 {
             </pre>
             <hr>
         </div>
-<!-- Popup giỏ hàng -->
-<div id="gio-hang-popup" style="display:none; position:fixed; top:80px; right:20px; 
-     background:white; border:1px solid #623e2a; padding:20px; z-index:999; 
-     width:320px; border-radius:10px; font-family:'Montserrat',sans-serif; color:#623e2a;">
-  <h3 style="margin-top:0">Giỏ hàng</h3>
-  <div id="danh-sach-gio"></div>
-  <hr>
-  <p>Tổng: <strong id="tong-tien">0đ</strong></p>
-  <button onclick="dongGioHang()" style="background:white; border:1px solid #623e2a; 
-          color:#623e2a; padding:8px 16px; border-radius:20px; cursor:pointer;">Đóng</button>
-  <button onclick="datHang()" style="background:#623e2a; border:none; 
-          color:white; padding:8px 16px; border-radius:20px; cursor:pointer;">Đặt hàng</button>
-</div>
-<script>
-function layGioHang() {
-  return JSON.parse(localStorage.getItem('gioHang')) || [];
-}
-function luuGioHang(gio) {
-  localStorage.setItem('gioHang', JSON.stringify(gio));
-}
-
-// Thêm vào giỏ — lấy tên, giá, size từ trang hiện tại
-function themVaoGio() {
-  const ten = 'Double Cheese Lemon Cake';
-  const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
-  const soLuong = parseInt(document.getElementById('quantity').textContent);
-  const size = document.querySelector('.option.active').textContent;
-
-  const gio = layGioHang();
-  const key = ten + '-' + size;
-  const existing = gio.find(i => i.key === key);
-
-  if (existing) {
-    existing.soLuong += soLuong;
-  } else {
-    gio.push({ key, ten, size, gia, soLuong });
-  }
-
-  luuGioHang(gio);
-  capNhatSoLuong();
-  alert('Đã thêm vào giỏ hàng!');
-}
-
-function capNhatSoLuong() {
-  const gio = layGioHang();
-  const tong = gio.reduce((s, i) => s + i.soLuong, 0);
-  document.getElementById('so-luong').textContent = tong;
-}
-
-function hienThiGioHang() {
-  const gio = layGioHang();
-  const ds = document.getElementById('danh-sach-gio');
-  const tt = document.getElementById('tong-tien');
-
-  if (gio.length === 0) {
-    ds.innerHTML = '<p>Giỏ hàng trống!</p>';
-    tt.textContent = '0đ';
-    return;
-  }
-
-  ds.innerHTML = gio.map(item => `
-    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
-      <span>${item.ten} (${item.size}) x${item.soLuong}</span>
-      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
-      <button onclick="xoaKhoiGio('${item.key}')" 
-        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
-    </div>
-  `).join('');
-
-  const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
-  tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
-}
-
-function xoaKhoiGio(key) {
-  let gio = layGioHang().filter(i => i.key !== key);
-  luuGioHang(gio);
-  hienThiGioHang();
-  capNhatSoLuong();
-}
-
-function moGioHang() {
-  document.getElementById('gio-hang-popup').style.display = 'block';
-  hienThiGioHang();
-}
-
-function dongGioHang() {
-  document.getElementById('gio-hang-popup').style.display = 'none';
-}
-
-function datHang() {
-  const gio = layGioHang();
-  if (gio.length === 0) { alert('Giỏ hàng trống!'); return; }
-  const hoTen = prompt('Họ và tên:');
-  const sdt = prompt('Số điện thoại:');
-  const diaChi = prompt('Địa chỉ giao hàng:');
-  if (!hoTen || !sdt || !diaChi) { alert('Vui lòng điền đầy đủ!'); return; }
-
-  fetch('http://localhost:3000/api/dat-hang', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ hoTen, sdt, diaChi, gioHang: gio })
-  })
-  .then(r => r.json())
-  .then(data => {
-    alert(data.thongBao);
-    localStorage.removeItem('gioHang');
-    capNhatSoLuong();
-    dongGioHang();
-  });
-}
-
-capNhatSoLuong();
-</script>
+<script src="banhang.js"></script>
 </body>
 </html>
