@@ -173,6 +173,13 @@ h2 {
 .giam, .tang, .tgh img {
     cursor: pointer;
 }
+a:link {
+    color: #623e2a;
+}
+
+a:visited {
+    color: #623e2a;
+}
 </style>
 </head>
 <body>
@@ -238,111 +245,6 @@ h2 {
             </td>
         </tr>
     </table>
-
-    <script>
-        // Tăng giảm số lượng và cập nhật giá
-        document.addEventListener('DOMContentLoaded', function () {
-            const quantityEl = document.getElementById('quantity');
-            const priceEl = document.getElementById('price');
-            const decreaseBtn = document.getElementById('decrease');
-            const increaseBtn = document.getElementById('increase');
-
-            let unitPrice = 50000;
-            let quantity = 1;
-
-            function formatPrice(value) {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
-            }
-
-            function updateDisplay() {
-                quantityEl.textContent = quantity;
-                priceEl.textContent = formatPrice(unitPrice * quantity);
-            }
-
-            increaseBtn.addEventListener('click', () => {
-                quantity += 1;
-                updateDisplay();
-            });
-
-            decreaseBtn.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity -= 1;
-                    updateDisplay();
-                }
-            });
-        });
-        // Popup giỏ hàng
-        function layGioHang() {
-            return JSON.parse(localStorage.getItem('gioHang')) || [];
-        }
-        function luuGioHang(gio) {
-            localStorage.setItem('gioHang', JSON.stringify(gio));
-        }
-
-        // Thêm vào giỏ — lấy tên, giá từ trang hiện tại
-        function themVaoGio() {
-            const ten = 'Red Velvet';
-            const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
-            const soLuong = parseInt(document.getElementById('quantity').textContent);
-
-            const gio = layGioHang();
-            const key = ten;
-            const existing = gio.find(i => i.key === key);
-
-            if (existing) {
-                existing.soLuong += soLuong;
-            } else {
-                gio.push({ key, ten, gia, soLuong });
-            }
-
-            luuGioHang(gio);
-            capNhatSoLuong();
-            alert('Đã thêm vào giỏ hàng!');
-        }
-
-        function capNhatSoLuong() {
-            const gio = layGioHang();
-            const tong = gio.reduce((s, i) => s + i.soLuong, 0);
-            document.getElementById('so-luong').textContent = tong;
-        }
-
-        function hienThiGioHang() {
-            const gio = layGioHang();
-            const ds = document.getElementById('danh-sach-gio');
-            const tt = document.getElementById('tong-tien');
-
-            if (gio.length === 0) {
-                ds.innerHTML = '<p>Giỏ hàng trống!</p>';
-                tt.textContent = '0đ';
-                return;
-            }
-
-            ds.innerHTML = gio.map(item => `
-    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
-      <span>${item.ten} x${item.soLuong}</span>
-      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
-      <button onclick="xoaKhoiGio('${item.key}')" 
-        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
-    </div>
-  `).join('');
-
-            const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
-            tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
-        }
-        capNhatSoLuong();
-
-        // Hiển thị ảnh nhỏ khi click sẽ đổi ảnh lớn
-        document.addEventListener('DOMContentLoaded', function () {
-            const mainImage = document.getElementById('main-image');
-            const thumbnailImages = document.querySelectorAll('.anhnho img');
-
-            thumbnailImages.forEach(img => {
-                img.addEventListener('click', function () {
-                    mainImage.src = this.src;
-                    mainImage.alt = this.alt;
-                });
-            });
-        });
-    </script>
+<script src="banhang.js"></script>
 </body>
 </html>
