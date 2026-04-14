@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mango Bloom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <style>
+    body {
+    margin: 0;
+    padding: 0;
+    }
+        ul.header {
+  list-style-type: none;
+  margin: 0px 0px 0px;
+  padding: 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+}
+ul.header li {
+  width: 20%;
+  white-space: nowrap;
+  font-size: 100%;
+  justify-content: space-between;
+}
+ul.header li a {
+  color: #623e2a;
+  text-decoration: none;
+  font-family: "Paytone One", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  cursor: pointer;
+}
+a:visited {
+    color: #623e2a;
+}
+a:link {
+    color: #623e2a;
+}
+ul.header li img {
+    width: 100px;
+    height: 100px;
+    padding: 0px 80px 0px;
+}
+.banhhq {
+    font-family: "Paytone One", sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #623e2a;
+}
+.anhlon img{
+    width: 40vw;
+    height: auto;    
+    border: 1px solid #623e2a;
+    border-radius: 5%;
+}
+.anhlon {
+    padding: 0 7vw 0;
+}
+.tenbanh {
+    font-family: 'Italianno', cursive;
+    font-size: 60px;
+    color: #623e2a;
+    text-align: left;
+}
+.dong3 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+}
+.soluong {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.gia {
+    font-family: "montserrat", sans-serif;
+    font-size: 30px;
+    color: #623e2a;
+    font-weight: 290;
+}
+.tang .giam {
+    backface-visibility: hidden;
+}
+.giam img, .tang img {
+    width: 25px;
+    height: 25px;
+}
+.so {
+    font-family: "montserrat", sans-serif;
+    font-size: 30px;
+    color: #623e2a;
+    font-weight: 290;
+}
+.nglieu {
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    color: #623e2a;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: left;
+}
+.des {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 250;
+    color: #623e2a;
+    width: 40vw;
+    text-align: justify;
+    text-indent: 2em;
+    line-height: 130%;
+    margin-top: -30px;
+}
+table, tr, td{
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+}.cot2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.chu {
+    display: flex;
+    align-items: center;
+    padding-right: 5vw;
+}
+.anhnho img {
+    width: 10vw;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #623e2a;
+    border-radius: 10%;
+}
+.anhnho {
+    display: flex;
+    justify-content: center;
+    gap: 1vw;
+    padding-right: 5vw;
+    padding-bottom: 5vw;
+}
+.tgh img {
+    width: 250px;
+    height: 70px;
+}
+.tgh {
+    align-items: center;
+    font-family: "paytone one", sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 40px;
+    border: 1px solid #623e2a;
+    border-radius: 20px;
+    margin:20px auto;
+    font-size: 25px;
+    color: white;
+    background-color: #623e2a;
+}
+.tgh img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+h2 {
+    font-family: "Montserrat", sans-serif;
+    color: #623e2a;
+    font-weight: bold;
+}
+.row3 {
+    width: 100%;
+    vertical-align: top;
+    border-bottom: 1px solid #623e2a;
+}
+.huong {
+    font-family: "Montserrat", sans-serif;
+    color: #623e2a;
+    font-weight: 450;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: justify;
+}
+.kt {
+    font-family: "Montserrat", sans-serif;
+    color: #623e2a;
+    font-weight: 450;
+    font-size: 23px;
+    display: flex
+}
+.option {
+    font-family: "Montserrat", sans-serif;
+    color: #623e2a;
+    font-weight: 450;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid #623e2a;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 0px 30px 15px;
+     white-space: nowrap;
+}
+.option:hover {
+    background-color: #623e2a;
+    color: white;
+    cursor: pointer;
+}
+.option,  .tang, .giam:hover {
+    cursor: pointer;
+}
+.tgh:hover {
+    cursor: pointer;
+}
+.option.active {
+    background-color: #623e2a !important;
+    color: white !important;
+}
+</style>
+ <script>
+                document.addEventListener('DOMContentLoaded', function () {
+            // Tìm và lưu trữ phần tử HTML có id là 'quantity'
+            const quantityEl = document.getElementById('quantity');
+            // Tìm và lưu trữ phần tử HTML có id là 'price'
+            const priceEl = document.getElementById('price');
+            // Tìm và lưu trữ phần tử HTML có id là 'decrease'
+            const decreaseBtn = document.getElementById('decrease');
+            // Tìm và lưu trữ phần tử HTML có id là 'increase'
+            const increaseBtn = document.getElementById('increase');
+            // Lấy danh sách các nút chọn size
+            const sizeOptions = document.querySelectorAll('.option');
+            // Lấy ảnh lớn và ảnh nhỏ
+            const mainImage = document.getElementById('main-image');
+            const thumbImages = document.querySelectorAll('.anhnho img');
+
+            function parsePrice(text) {
+                return parseInt(text.replace(/[^0-9]/g, ''), 10) || 0;
+            }
+
+            // Khởi tạo giá từ nội dung của phần tử #price
+                function parsePrice(text) {
+                return parseInt(text.replace(/[^0-9]/g, ''), 10) || 0;
+            }
+            let unitPrice = parsePrice(priceEl.textContent);
+
+            // Khai báo biến quantity (số lượng)
+            let quantity = 1;
+
+            // Hàm định dạng giá tiền
+            function formatPrice(value) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+            }
+
+            // Hàm cập nhật trạng thái hiển thị
+            function updateDisplay() {
+                quantityEl.textContent = quantity;
+                priceEl.textContent = formatPrice(unitPrice * quantity);
+            }
+
+            // Chuyển ảnh lớn khi bấm vào ảnh nhỏ
+            thumbImages.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    mainImage.src = this.src;
+                    thumbImages.forEach(img => img.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Tăng số lượng
+            increaseBtn.addEventListener('click', () => {
+                quantity += 1;
+                updateDisplay();
+            });
+
+            // Giảm số lượng
+            decreaseBtn.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity -= 1;
+                    updateDisplay();
+                }
+            });
+            // Sự kiện chọn size
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    // Cập nhật class active
+                    sizeOptions.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Lấy giá trị data-price và cập nhật hiển thị
+                    unitPrice = parseInt(this.getAttribute('data-price'));
+                    updateDisplay();
+                });
+            });
+        });
+        function layGioHang() {
+            return JSON.parse(localStorage.getItem('gioHang')) || [];
+        }
+        function luuGioHang(gio) {
+            localStorage.setItem('gioHang', JSON.stringify(gio));
+        }
+
+        // Thêm vào giỏ — lấy tên, giá, size từ trang hiện tại
+        function themVaoGio() {
+            const ten = 'Golden Melon';
+            const gia = parseInt(document.getElementById('price').textContent.replace(/\.|đ/g, ''));
+            const soLuong = parseInt(document.getElementById('quantity').textContent);
+            const size = document.querySelector('.option.active').textContent;
+
+            const gio = layGioHang();
+            const key = ten + '-' + size;
+            const existing = gio.find(i => i.key === key);
+
+            if (existing) {
+                existing.soLuong += soLuong;
+            } else {
+                gio.push({ key, ten, size, gia, soLuong });
+            }
+
+            luuGioHang(gio);
+            capNhatSoLuong();
+            alert('Đã thêm vào giỏ hàng!');
+        }
+
+        function capNhatSoLuong() {
+            const gio = layGioHang();
+            const tong = gio.reduce((s, i) => s + i.soLuong, 0);
+            document.getElementById('so-luong').textContent = tong;
+        }
+
+        function hienThiGioHang() {
+            const gio = layGioHang();
+            const ds = document.getElementById('danh-sach-gio');
+            const tt = document.getElementById('tong-tien');
+
+            if (gio.length === 0) {
+                ds.innerHTML = '<p>Giỏ hàng trống!</p>';
+                tt.textContent = '0đ';
+                return;
+            }
+            ds.innerHTML = gio.map(item => `
+    <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center">
+      <span>${item.ten} (${item.size}) x${item.soLuong}</span>
+      <span>${(item.gia * item.soLuong).toLocaleString('vi-VN')}đ</span>
+      <button onclick="xoaKhoiGio('${item.key}')" 
+        style="background:none; border:none; color:#623e2a; cursor:pointer; font-size:16px">✕</button>
+    </div>
+  `).join('');
+
+            const tong = gio.reduce((s, i) => s + i.gia * i.soLuong, 0);
+            tt.textContent = tong.toLocaleString('vi-VN') + 'đ';
+        }
+
+        capNhatSoLuong();
+    </script>
+</head>
+<body>
+    <ul class="header">
+        <li><a href="sanpham.html">Sản phẩm</a></li>
+        <li><a href="about-us.html">About us</a></li>
+        <li><img src="logo.png"></li>
+        <li><a href="login.html">Đăng nhập</a></li>
+      <li><a href="gio-hang.html" onclick="moGioHang()">Giỏ hàng (<span id="so-luong">0</span>)</a></li>
+    </ul>
+    <table>
+        <tr>
+            <td class="anhlon">
+                <img src="1aab55b454e5b035b3096753b13fc661 (1).jpg" alt="Mango Bloom">
+            </td>
+            <td class="chu">
+            <div class="cot2">
+                <div class="banhhq"><a href="#">Bánh hoa quả</a></div>
+                <div class="tenbanh">Mango Bloom</div>
+                <div class="dong3">
+                    <div class="gia" id="price">220.000đ </div>
+                    <div class="soluong"></div>
+                    <div class="giam" id="decrease"><img src="dau-tru.png" alt="Giảm"></div>
+                    <div class="so" id="quantity">1</div>
+                    <div class="tang" id="increase"><img src="dau-cong.png" alt="Tăng"></div>
+                </div>
+                <div class="nglieu">Xoài</div>
+                <div class="des">
+                    <p>     Xoài chín vàng được cắt khối nổi bật trên nền kem tươi trắng mịn, mang hương thơm nhiệt đới đặc trưng. Vị xoài ngọt đậm nhưng vẫn thanh, kết hợp cùng cốt bánh mềm nhẹ và lớp kem béo vừa phải, tạo nên trải nghiệm tròn vị và tươi mới.      
+                    <br>      Đặt bánh ngay tại 8 a.m để thưởng thức hương vị của Mango Bloom!</p>
+                </div>
+            </div>
+            </td>
+        </tr>
+        <tr class="row2">
+            <td>
+                <div class="anhnho">
+                    <div><img src="1aab55b454e5b035b3096753b13fc661 (1).jpg" alt="Mango Bloom"></div>
+                    <div><img src="8f61e7f1de448c42d30e4b537c01d4d5.jpg" alt="Mango Bloom"></div>
+                    <div><img src="53266d67f81cf4d785c8c721d8e7914e.jpg" alt="Mango Bloom"></div>
+                </div>
+            </td>
+            <td>
+                <div class="kt">
+                    <b>Kích thước</b>
+                <div class="size">
+                    <button class="option" data-price="220000">16cm</button>
+                    <button class="option" data-price="270000">18cm</button>
+                    <button class="option" data-price="320000">20cm</button>
+                </div>
+                </div>
+                <div class="tgh" onclick="themVaoGio()">
+                Thêm giỏ hàng <img src="Screenshot 2026-03-22 020902.png" alt="Giỏ hàng">
+                </div>
+            </td>
+        </tr>
+        <tr class="row3">
+            <td style="padding-bottom: 30px;">
+                <h2 style="padding-left: 15vw;">Hướng dẫn sử dụng</h2>
+                <ul class="huong" style="padding-left: 5vw;">
+                    <li>Luôn giữ bánh trong hộp kín & bảo quản trong ngăn mát tủ lạnh</li>
+                    <li>Không nên để bánh ở nhiệt độ phòng quá 30 phút (Bánh sẽ bị chảy)</li>
+                    <li>Sử dụng trong vòng 03 ngày</li>
+                </ul>
+            </td>
+            <td style="padding-left: 5vw;">
+                <h2 style="padding-left: 10vw;">Phụ kiện đính kèm</h2>
+                <ul class="huong" style="padding-left: 8vw;">
+                    <li>01 Chiếc nến sinh nhật</li>
+                    <li>01 Bộ đĩa và dĩa dành cho 10 người</li>
+                    <li>01 Dao cắt bánh</li>
+                </ul>
+            </td>
+        </tr>
+</table>
+</body>
+</html>

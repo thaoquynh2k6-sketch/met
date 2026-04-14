@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.header {
+            list-style-type: none;
+            margin: 0px 0px 0px;
+            padding: 0px 10px 0px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+        }
+
+        ul.header li {
+            width: 20%;
+            white-space: nowrap;
+            font-size: 100%;
+            justify-content: space-between;
+        }
+
+        ul.header li a {
+            color: #623e2a;
+            text-decoration: none;
+            font-family: "Paytone One", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+        }
+
+        ul.header li img {
+            width: 100px;
+            height: 100px;
+            padding: 0px 80px 0px;
+        }
+
+        .banhphap {
+            font-family: "Paytone One", sans-serif;
+            font-size: 25px;
+            font-weight: bold;
+            color: #623e2a;
+        }
+
+        .anhlon img {
+            width: 30vw;
+            height: auto;
+        }
+
+        .anhlon {
+            padding: 0 7vw 0;
+            justify-content: center;
+        }
+
+        .tenbanh {
+            font-family: 'Italianno';
+            font-size: 60px;
+            color: #623e2a;
+            text-align: left;
+        }
+
+        .dong3 {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-direction: row;
+        }
+
+        .soluong {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gia {
+            font-family: "montserrat", sans-serif;
+            font-size: 30px;
+            color: #623e2a;
+            font-weight: 290;
+        }
+
+        .giam img,
+        .tang img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .so {
+            font-family: "montserrat", sans-serif;
+            font-size: 30px;
+            color: #623e2a;
+            font-weight: 290;
+        }
+
+        .nglieu {
+            font-family: "Montserrat", sans-serif;
+            font-size: 30px;
+            color: #623e2a;
+            font-weight: bold;
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        .des {
+            font-family: "Montserrat", sans-serif;
+            font-size: 20px;
+            font-weight: 250;
+            color: #623e2a;
+            width: 40vw;
+            text-align: justify;
+            text-indent: 2em;
+            line-height: 130%;
+            margin-top: -30px;
+        }
+
+        table {
+            align-items: center;
+            width: 40%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .cot2 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .chu {
+            display: flex;
+            align-items: center;
+            padding-right: 5vw;
+        }
+
+        .anhnho img {
+            width: 10vw;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #623e2a;
+            border-radius: 10%;
+            cursor: pointer;
+        }
+
+        .anhnho img.active {
+            border-color: #ff9900;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .anhnho {
+            display: flex;
+            justify-content: center;
+            gap: 1vw;
+            padding-bottom: 5vw;
+        }
+
+        .tgh img {
+            width: 250px;
+            height: 70px;
+        }
+
+        .tgh {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 50px;
+        }
+
+        h2 {
+            font-family: "Montserrat", sans-serif;
+            color: #623e2a;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .huong {
+            font-family: "Montserrat", sans-serif;
+            color: #623e2a;
+            font-weight: 450;
+            font-size: 16px;
+            line-height: 150%;
+            text-align: justify;
+            /*căn trái*/
+            margin: 0 auto;
+            /*căn giữa theo chiều ngang*/
+            width: fit-content;
+            /*căn giữa theo chiều ngang*/
+        }
+
+        .kt {
+            font-family: "Montserrat", sans-serif;
+            color: #623e2a;
+            font-weight: 450;
+            font-size: 23px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        .size {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: 30px;
+        }
+
+        .option {
+            font-family: "Montserrat", sans-serif;
+            color: #623e2a;
+            font-weight: 450;
+            font-size: 20px;
+            background-color: white;
+            border: 1px solid #623e2a;
+            width: 80px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .option:hover,
+        .option.active {
+            background-color: #623e2a;
+            color: white;
+        }
+
+        .giam,
+        .tang,
+        .tgh img,
+        .option {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul class="header">
+        <li><a href="sanpham.html">Sản phẩm</a></li>
+        <li><a href="about-us.html">About us</a></li>
+        <li><img src="logo.png"></li>
+        <li><a href="login.html">Đăng nhập</a></li>
+        <li><a href="gio-hang.html" onclick="moGioHang()">Giỏ hàng (<span id="so-luong">0</span>)</a></li>
+    </ul>
+    <table>
+        <tr>
+            <td class="anhlon">
+                <img id="main-image" src="https://r2.cms.4handy.vn/mang-cau-na-pho-mai-550g-1024x1024.png"
+                    alt="Soursop Cheesecake">
+            </td>
+            <td class="chu">
+                <div class="cot2">
+                    <span></span>
+                    <div class="banhphap">Bánh hộp thiếc</div>
+                    <div class="tenbanh">Soursop Cheesecake</div>
+                    <div class="dong3">
+                        <div class="gia" id="price">325.000đ</div>
+                        <div class="soluong"></div>
+                        <div class="giam" id="decrease"><img src="dau-tru.png" alt="Giảm"></div>
+                        <div class="so" id="quantity">1</div>
+                        <div class="tang" id="increase"><img src="dau-cong.png" alt="Tăng"></div>
+                    </div>
+                    <div class="nglieu"></div>
+                    <div class="des">
+                        <p>Hương vị mới lạ với cốt vani mềm nhẹ, kết hợp cùng kem na phô mai làm từ thịt na tươi dai
+                            ngọt, cream cheese, mascarpone và kem whipping béo mịn. Xen giữa là thạch chanh leo chua dịu
+                            giúp cân bằng vị, cùng lớp sốt na, thịt na tươi và trân châu trắng tạo cảm giác đa tầng thú
+                            vị. </p>
+                        <p>Đặt bánh tại 8 a.m ngay để thưởng thức hương vị của bánh hộp thiếc!</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr class="row2">
+            <td>
+                <div class="anhnho">
+                    <div><img src="https://r2.cms.4handy.vn/mang-cau-na-pho-mai-550g-1024x1024.png"
+                            alt="Soursop Cheesecake"></div>
+                    <div><img src="https://r2.cms.4handy.vn/mang-cau-xiem-pho-mai-mini-250g-1024x1024.png"
+                            alt="Soursop Cheesecake Mini"></div>
+                </div>
+            </td>
+            <td>
+                <div class="kt">
+                    <b>Trọng lượng</b>
+                    <div class="size">
+                        <button class="option active" data-price="325000">320g</button>
+                        <button class="option" data-price="650000">670g</button>
+                    </div>
+                </div>
+                <div class="tgh" onclick="themVaoGio()"><img src="them-gio-hang.png" alt=""></div>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <hr>
+        <pre>
+
+            </pre>
+    </div>
+    <div>
+        <h2>Hướng dẫn sử dụng</h2>
+        <ul class="huong">
+            <li>Bảo quản trong ngăn mát tủ lạnh (2–6°C) ngay sau khi nhận bánh để giữ được kết cấu và hương vị tốt nhất.
+            </li>
+            <li>Đậy kín nắp hộp thiếc sau mỗi lần sử dụng.</li>
+            <li>Ngon nhất trong 2–3 ngày kể từ ngày nhận bánh; nên dùng sớm để cảm nhận trọn vẹn độ tươi và hương vị.
+            </li>
+            <li>Không để ở nhiệt độ phòng quá 30–60 phút, đặc biệt trong thời tiết nóng, vì lớp kem và mousse có thể mềm
+                chảy.</li>
+        </ul>
+    </div>
+    <div>
+        <pre>
+
+            </pre>
+        <hr>
+    </div>
+    <!-- Popup giỏ hàng -->
+    <div id="gio-hang-popup" style="display:none; position:fixed; top:80px; right:20px; 
+     background:white; border:1px solid #623e2a; padding:20px; z-index:999; 
+     width:320px; border-radius:10px; font-family:'Montserrat',sans-serif; color:#623e2a;">
+        <h3 style="margin-top:0">Giỏ hàng</h3>
+        <div id="danh-sach-gio"></div>
+        <hr>
+        <p>Tổng: <strong id="tong-tien">0đ</strong></p>
+        <button onclick="dongGioHang()" style="background:white; border:1px solid #623e2a; 
+          color:#623e2a; padding:8px 16px; border-radius:20px; cursor:pointer;">Đóng</button>
+        <button onclick="datHang()" style="background:#623e2a; border:none; 
+          color:white; padding:8px 16px; border-radius:20px; cursor:pointer;">Đặt hàng</button>
+    </div>
+    <script src="ban-hang.js"></script>
+</body>
+
+</html>

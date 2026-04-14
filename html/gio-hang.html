@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng - Hai trạng thái (Cuộn trang)</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        min-height: 100vh;
+        padding: 20px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 20px 0 12px;
+        color: #555;
+      }
+
+      .cart-container {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto 60px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .cart-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        background: #fff;
+      }
+
+      .close-btn {
+        font-size: 1.6rem;
+        color: #777;
+        cursor: pointer;
+      }
+
+      .empty-state {
+        padding: 80px 24px 60px;
+        text-align: center;
+      }
+
+      .empty-icon {
+        font-size: 6.5rem;
+        color: #e0e0e0;
+        margin-bottom: 24px;
+      }
+
+      .empty-text {
+        color: #777;
+        font-size: 1.1rem;
+        margin-bottom: 32px;
+        line-height: 1.5;
+      }
+
+      .btn-primary {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 15 px;
+        background: #6b4e31;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .has-item .item {
+        padding: 20px;
+      }
+
+      .item-row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .item-img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 10px;
+        background: #f8f8f8;
+      }
+
+      .item-info {
+        flex: 1;
+      }
+
+      .item-name {
+        font-size: 1.12rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .item-desc {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .item-price {
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: #6b4e31;
+      }
+
+      .remove {
+        color: #6b4e31;
+        font-size: 0.92rem;
+        margin-top: 10px;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      .note-btn {
+        margin-top: 14px;
+        padding: 9px 20px;
+        background: #6b4e31;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.96rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .suggest-section {
+        padding: 16px 20px;
+        background: #fafafa;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+      }
+
+      .suggest-title {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #444;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .suggest-badge {
+        background: #8b6f47;
+        color: white;
+        font-size: 0.78rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-left: 8px;
+      }
+
+      .suggest-arrow {
+        font-size: 1.4rem;
+        color: #888;
+      }
+
+      .total {
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.12rem;
+        font-weight: 500;
+      }
+
+      .total-price {
+        font-weight: 700;
+        color: #6b4e31;
+      }
+
+      .continue-btn {
+        padding: 16px;
+        background: #6b4e31;
+        color: white;
+        border: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart-container">
+      <div class="cart-header">
+        Giỏ hàng
+        <span class="close-btn">×</span>
+      </div>
+      <div class="empty-state">
+        <div class="empty-text">Chưa có sản phẩm nào trong giỏ</div>
+        <button class="btn-primary">XEM TẤT CẢ SẢN PHẨM</button>
+      </div>
+    </div>
+
+    <div class="cart-container has-item">
+      <div class="cart-header">
+        Giỏ hàng
+        <span class="close-btn">×</span>
+      </div>
+
+      <div class="item">
+        <div class="item-row">
+          <img src="https://lafuong.com/a-gentle-blend" />
+          <div class="item-info">
+            <div class="item-name">A Gentle Blend x1</div>
+            <div class="item-desc">Cà phê & Cốt dừa</div>
+            <div class="item-price">525.000 đ</div>
+            <button class="note-btn">VIẾT LỜI CHÚC</button>
+          </div>
+          <div class="remove">XÓA</div>
+        </div>
+      </div>
+
+      <div class="suggest-section">
+        <div class="suggest-title">
+          GỢI Ý PHỤ KIỆN DÀNH CHO BẠN
+          <span class="suggest-arrow">▼</span>
+        </div>
+      </div>
+
+      <div class="total">
+        <span>TỔNG TIỀN (1 SẢN PHẨM)</span>
+        <span class="total-price">525.000 đ</span>
+      </div>
+
+      <button class="continue-btn">TIẾP TỤC</button>
+    </div>
+  </body>
+</html>
