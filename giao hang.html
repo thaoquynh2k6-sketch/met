@@ -3,195 +3,277 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Giao hàng - Tiệm bánh</title>
+    <title>Giao hàng - Tiệm Bánh</title>
     <style>
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f9f5f0;
+      :root {
+        --primary: #8b4513;
+        --primary-light: #a0522d;
+        --text: #333;
+        --light-bg: #f9f5f0;
+        --border: #e5d5c0;
+      }
+
+      * {
+        box-sizing: border-box;
         margin: 0;
-        padding: 20px 10px;
-        color: #333;
-        line-height: 1.5;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        background: var(--light-bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 16px 10px;
       }
 
       .container {
-        max-width: 520px;
+        max-width: 540px;
         margin: 0 auto;
         background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.12);
         overflow: hidden;
       }
 
       .header {
-        background: #8b4513;
+        background: var(--primary);
         color: white;
-        padding: 14px 18px;
-        font-size: 20px;
-        font-weight: bold;
+        padding: 16px 20px;
+        font-size: 22px;
+        font-weight: 700;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
 
       .close-btn {
-        font-size: 28px;
+        font-size: 32px;
         cursor: pointer;
         line-height: 1;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+      }
+
+      .close-btn:hover {
+        opacity: 1;
       }
 
       .content {
-        padding: 20px 18px;
+        padding: 24px 20px;
       }
 
-      h3.section-title {
-        color: #8b4513;
+      .section-title {
+        color: var(--primary);
         font-size: 17px;
-        margin: 24px 0 10px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid #eee;
+        font-weight: 700;
+        margin: 28px 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #f0e6d9;
       }
 
       .form-group {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
       }
 
       label {
         display: block;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 14.5px;
         color: #444;
       }
 
       input[type="text"],
-      input[type="tel"] {
+      input[type="tel"],
+      textarea,
+      select {
         width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 15px;
-        box-sizing: border-box;
+        padding: 13px 16px;
+        border: 1.5px solid #ddd;
+        border-radius: 8px;
+        font-size: 15.5px;
+        transition: all 0.3s;
       }
 
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
+      }
+
+      textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+
+      /* Calendar */
       .calendar {
-        margin: 16px 0 24px;
+        margin: 20px 0 28px;
+      }
+
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
       }
 
       .month-title {
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #8b4513;
-        margin-bottom: 12px;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .nav-btn {
+        background: none;
+        border: none;
+        font-size: 28px;
+        width: 44px;
+        height: 44px;
+        color: var(--primary);
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background 0.2s;
+      }
+
+      .nav-btn:hover {
+        background: #f5e9d8;
       }
 
       table.calendar-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
         text-align: center;
+        font-size: 15px;
       }
 
       table.calendar-table th {
-        color: #8b4513;
-        font-weight: bold;
-        padding: 8px 4px;
+        color: var(--primary);
+        padding: 10px 4px;
+        font-weight: 600;
       }
 
       table.calendar-table td {
-        padding: 10px 4px;
-        border: 1px solid #eee;
+        padding: 12px 4px;
+        border: 1px solid #f0e6d9;
+        cursor: pointer;
+        height: 42px;
+        transition: all 0.2s;
       }
 
-      table.calendar-table td.empty {
-        background: #f8f8f8;
+      td.empty {
+        background: #faf7f2;
+        color: #ccc;
+      }
+
+      td.today {
+        background: #fff3e0;
+        font-weight: 700;
+      }
+
+      td.selected {
+        background: var(--primary) !important;
+        color: white !important;
+        font-weight: 700;
+        border-radius: 8px;
+      }
+
+      td:hover:not(.empty):not(.selected) {
+        background: #f8e9d0;
       }
 
       .note-red {
         color: #c0392b;
-        font-size: 13px;
-        margin: 8px 0 16px;
-        line-height: 1.4;
-      }
-
-      .time-select {
-        width: 100%;
-        padding: 12px;
-        font-size: 15px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        background: white;
-      }
-
-      textarea {
-        width: 100%;
-        min-height: 80px;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 15px;
-        resize: vertical;
-        box-sizing: border-box;
-      }
-
-      .gift-option {
-        margin: 20px 0;
-        font-size: 15px;
-      }
-
-      input[type="checkbox"] {
-        transform: scale(1.3);
-        margin-right: 10px;
-      }
-
-      .total-section {
-        margin-top: 28px;
-        padding-top: 20px;
-        border-top: 1px solid #ddd;
-        font-size: 16px;
-      }
-
-      .total-line {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 12px;
-      }
-
-      .total-line strong {
-        color: #8b4513;
-      }
-
-      .buttons {
-        display: flex;
-        margin-top: 28px;
-        gap: 12px;
-      }
-
-      .btn {
-        flex: 1;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 14px;
+        background: #fff0f0;
+        padding: 12px 16px;
         border-radius: 8px;
-        cursor: pointer;
-        text-align: center;
-        border: none;
-      }
-
-      .btn-back {
-        background: #eee;
-        color: #555;
-      }
-
-      .btn-confirm {
-        background: #8b4513;
-        color: white;
+        border-left: 4px solid #c0392b;
+        margin: 16px 0 24px;
       }
 
       .hotline {
         color: #c0392b;
         font-weight: bold;
+      }
+
+      .total-section {
+        background: #fdfaf5;
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 32px;
+        border: 1px solid #f0e6d9;
+      }
+
+      .total-line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 16px;
+        align-items: center;
+      }
+
+      .total-line:last-child {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 2px solid #e5d5c0;
+        font-size: 19px;
+        font-weight: 700;
+      }
+
+      .total-value {
+        font-weight: 600;
+        color: #222;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 15px;
+        font-size: 16.5px;
+        font-weight: 700;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s;
+      }
+
+      .btn-back {
+        background: #f1f1f1;
+        color: #555;
+      }
+
+      .btn-back:hover {
+        background: #e5e5e5;
+      }
+
+      .btn-confirm {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-confirm:hover {
+        background: var(--primary-light);
+      }
+
+      .gift-option {
+        margin: 20px 0;
+      }
+
+      .gift-option label {
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     </style>
   </head>
@@ -199,164 +281,281 @@
     <div class="container">
       <div class="header">
         Giao hàng
-        <span class="close-btn">×</span>
+        <span class="close-btn" id="close-btn">×</span>
       </div>
 
       <div class="content">
-        <h3 class="section-title">TÊN NGƯỜI ĐẶT</h3>
+        <h3 class="section-title">THÔNG TIN NGƯỜI ĐẶT</h3>
         <div class="form-group">
-          <label>TÊN NGƯỜI ĐẶT</label>
-          <input type="text" placeholder="" />
+          <label>Tên người đặt</label>
+          <input type="text" id="order-name" placeholder="Nhập họ và tên" />
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại người đặt</label>
+          <input type="tel" id="order-phone" placeholder="Nhập số điện thoại" />
         </div>
 
-        <div class="form-group">
-          <label>SỐ ĐIỆN THOẠI NGƯỜI ĐẶT</label>
-          <input type="tel" placeholder="" />
-        </div>
-
-        <h3 class="section-title">NGÀY GIAO</h3>
+        <h3 class="section-title">NGÀY GIAO HÀNG</h3>
         <div class="calendar">
-          <div class="month-title">Tháng Ba, 2026</div>
-          <table class="calendar-table">
+          <div class="calendar-header">
+            <button class="nav-btn" id="prev-month">‹</button>
+            <div class="month-title" id="month-title"></div>
+            <button class="nav-btn" id="next-month">›</button>
+          </div>
+          <table class="calendar-table" id="calendar-table">
             <thead>
               <tr>
+                <th>CN</th>
                 <th>Hai</th>
                 <th>Ba</th>
                 <th>Tư</th>
                 <th>Năm</th>
                 <th>Sáu</th>
                 <th>Bảy</th>
-                <th>CN</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="empty"></td>
-                <td class="empty"></td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-                <td>16</td>
-                <td>17</td>
-                <td>18</td>
-                <td>19</td>
-              </tr>
-              <tr>
-                <td>20</td>
-                <td>21</td>
-                <td>22</td>
-                <td>23</td>
-                <td>24</td>
-                <td>25</td>
-                <td>26</td>
-              </tr>
-              <tr>
-                <td>27</td>
-                <td>28</td>
-                <td>29</td>
-                <td>30</td>
-                <td>31</td>
-                <td class="empty"></td>
-                <td class="empty"></td>
-              </tr>
-            </tbody>
+            <tbody id="calendar-body"></tbody>
           </table>
         </div>
 
         <p class="note-red">
-          Nếu cần đặt bánh gấp trong ngày, xin liên hệ hotline:
-          <span class="hotline">0123456798</span>
+          Nếu cần đặt bánh giao gấp trong ngày hôm nay, vui lòng liên hệ
+          hotline:
+          <span class="hotline">0123 456 789</span>
         </p>
 
-        <h3 class="section-title">GIỜ GIAO (NGÀY XX/YY/2026)</h3>
+        <h3 class="section-title">
+          GIỜ GIAO
+          <span id="selected-date-display" style="color: var(--primary)"></span>
+        </h3>
         <div class="form-group">
-          <select class="time-select">
-            <option>Chọn khung giờ...</option>
-            <option>08:00 - 10:00</option>
-            <option>10:00 - 12:00</option>
-            <option>13:00 - 15:00</option>
-            <option>15:00 - 17:00</option>
-            <option>17:00 - 19:00</option>
+          <select id="delivery-time">
+            <option value="">Chọn khung giờ giao hàng...</option>
+            <option value="08:00-10:00">08:00 - 10:00</option>
+            <option value="10:00-12:00">10:00 - 12:00</option>
+            <option value="13:00-15:00">13:00 - 15:00</option>
+            <option value="15:00-17:00">15:00 - 17:00</option>
+            <option value="17:00-19:00">17:00 - 19:00</option>
           </select>
         </div>
 
-        <h3 class="section-title">ĐỊA CHỈ</h3>
+        <h3 class="section-title">ĐỊA CHỈ GIAO HÀNG</h3>
         <div class="form-group">
-          <textarea placeholder=""></textarea>
+          <textarea
+            id="delivery-address"
+            placeholder="Nhập địa chỉ chi tiết (số nhà, tên đường, phường/xã, quận/huyện...)"
+          ></textarea>
         </div>
 
-        <h3 class="section-title">GHI CHÚ GIAO HÀNG</h3>
+        <h3 class="section-title">GHI CHÚ CHO SHIPPER</h3>
         <div class="form-group">
-          <textarea placeholder=""></textarea>
+          <textarea
+            id="delivery-note"
+            placeholder="Ví dụ: Gọi trước khi giao, để trước cửa, giao cho bảo vệ..."
+          ></textarea>
         </div>
 
         <div class="gift-option">
           <label>
-            <input type="checkbox" /> Bạn muốn tặng bánh cho người khác?
+            <input type="checkbox" id="is-gift" />
+            Tôi muốn tặng bánh cho người khác
           </label>
         </div>
 
         <div id="gift-info" style="display: none">
-          <h3 class="section-title">NGƯỜI NHẬN</h3>
+          <h3 class="section-title">THÔNG TIN NGƯỜI NHẬN</h3>
           <div class="form-group">
-            <label>NGƯỜI NHẬN</label>
-            <input type="text" placeholder="" />
+            <label>Tên người nhận</label>
+            <input
+              type="text"
+              id="recipient-name"
+              placeholder="Nhập họ và tên người nhận"
+            />
           </div>
           <div class="form-group">
-            <label>SỐ ĐIỆN THOẠI NGƯỜI NHẬN</label>
-            <input type="tel" placeholder="" />
+            <label>Số điện thoại người nhận</label>
+            <input
+              type="tel"
+              id="recipient-phone"
+              placeholder="Nhập số điện thoại"
+            />
           </div>
         </div>
 
+        <!-- Phần tổng tiền đã được làm trống -->
         <div class="total-section">
           <div class="total-line">
             <span>Tổng tiền sản phẩm</span>
-            <strong>525.000 đ</strong>
+            <strong id="product-total" class="total-value">—</strong>
           </div>
           <div class="total-line">
             <span>Phí vận chuyển</span>
-            <strong>25.000 đ</strong>
+            <strong id="shipping-fee" class="total-value">Tính sau</strong>
+          </div>
+          <div class="total-line">
+            <span><strong>Tổng thanh toán</strong></span>
+            <strong id="grand-total" class="total-value">—</strong>
           </div>
         </div>
 
         <div class="buttons">
-          <button class="btn btn-back">←</button>
-          <button class="btn btn-confirm">XÁC NHẬN</button>
+          <button class="btn btn-back" id="btn-back">← Quay lại</button>
+          <button class="btn btn-confirm" id="btn-confirm">
+            XÁC NHẬN ĐƠN HÀNG
+          </button>
         </div>
       </div>
     </div>
 
     <script>
-      // Show/hide gift info
+      let currentDate = new Date();
+      let selectedDate = null;
+
+      function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        document.getElementById("month-title").textContent =
+          `Tháng ${month + 1} / ${year}`;
+
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        const tbody = document.getElementById("calendar-body");
+        tbody.innerHTML = "";
+
+        let row = document.createElement("tr");
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+          const empty = document.createElement("td");
+          empty.classList.add("empty");
+          row.appendChild(empty);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const cell = document.createElement("td");
+          cell.textContent = day;
+
+          const today = new Date();
+          if (
+            day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+          ) {
+            cell.classList.add("today");
+          }
+
+          cell.addEventListener("click", () => {
+            selectDate(year, month, day);
+          });
+
+          row.appendChild(cell);
+
+          if ((firstDayOfMonth + day) % 7 === 0 || day === daysInMonth) {
+            tbody.appendChild(row);
+            row = document.createElement("tr");
+          }
+        }
+      }
+
+      function selectDate(year, month, day) {
+        selectedDate = new Date(year, month, day);
+
+        // Xóa highlight cũ
+        document.querySelectorAll("#calendar-body td").forEach((td) => {
+          td.classList.remove("selected");
+        });
+
+        // Highlight ngày được chọn
+        const cells = document.querySelectorAll("#calendar-body td");
+        for (let cell of cells) {
+          if (
+            parseInt(cell.textContent) === day &&
+            !cell.classList.contains("empty")
+          ) {
+            cell.classList.add("selected");
+            break;
+          }
+        }
+
+        const options = {
+          weekday: "long",
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        };
+        const dateStr = selectedDate.toLocaleDateString("vi-VN", options);
+        document.getElementById("selected-date-display").textContent =
+          `(${dateStr})`;
+      }
+
+      // Chuyển tháng
+      document.getElementById("prev-month").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+      });
+
+      document.getElementById("next-month").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+
+      // Xử lý checkbox tặng quà
       document
-        .querySelector('input[type="checkbox"]')
+        .getElementById("is-gift")
         .addEventListener("change", function () {
           document.getElementById("gift-info").style.display = this.checked
             ? "block"
             : "none";
         });
 
-      // Optional: close button (just demo)
-      document.querySelector(".close-btn").addEventListener("click", () => {
-        alert("Đóng form giao hàng");
-        // window.close(); // chỉ hoạt động nếu mở bằng script
+      // Xác nhận đơn hàng
+      document.getElementById("btn-confirm").addEventListener("click", () => {
+        if (!selectedDate) {
+          alert("Vui lòng chọn ngày giao hàng!");
+          return;
+        }
+        if (!document.getElementById("delivery-time").value) {
+          alert("Vui lòng chọn khung giờ giao hàng!");
+          return;
+        }
+        if (!document.getElementById("delivery-address").value.trim()) {
+          alert("Vui lòng nhập địa chỉ giao hàng!");
+          return;
+        }
+
+        const orderName = document.getElementById("order-name").value.trim();
+        if (!orderName) {
+          alert("Vui lòng nhập tên người đặt!");
+          return;
+        }
+
+        alert(
+          "✅ Đơn hàng của bạn đã được xác nhận thành công!\n\nCảm ơn bạn đã đặt bánh tại Tiệm Bánh.",
+        );
+        // Sau này bạn sẽ kết nối với giỏ hàng và cập nhật tổng tiền ở đây
       });
+
+      // Nút quay lại
+      document.getElementById("btn-back").addEventListener("click", () => {
+        if (confirm("Bạn có chắc muốn quay lại trang trước?")) {
+          window.history.back();
+        }
+      });
+
+      // Nút đóng
+      document.getElementById("close-btn").addEventListener("click", () => {
+        if (confirm("Đóng form giao hàng?")) {
+          alert("Form đã được đóng.");
+        }
+      });
+
+      // Khởi tạo
+      renderCalendar();
+
+      // Mặc định chọn ngày hôm nay
+      const today = new Date();
+      selectDate(today.getFullYear(), today.getMonth(), today.getDate());
     </script>
   </body>
 </html>
